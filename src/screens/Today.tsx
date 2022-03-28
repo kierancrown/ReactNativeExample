@@ -10,15 +10,15 @@ import {
   View,
 } from 'react-native';
 
-import {getTopHeadlines} from '../api/news';
-import {Colours} from '../colours';
-import ArticleCard from '../components/Article';
-
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from './RootStackPrams';
 
 import {APIContext, ACTIONS} from '../context/api';
+import ArticleCard from '../components/Article';
+import {getTopHeadlines} from '../api/news';
+import {Colours} from '../colours';
 
+// Used to generate type interface for navigation props
 type Props = NativeStackScreenProps<RootStackParamList, 'Today'>;
 
 const TodayScreen = ({navigation}: Props) => {
@@ -26,12 +26,22 @@ const TodayScreen = ({navigation}: Props) => {
   const isDarkMode = useColorScheme() === 'dark';
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const backgroundStyle = {
-    flex: 1,
-    backgroundColor: isDarkMode
-      ? Colours.dark.background
-      : Colours.light.background,
-  };
+  const styles = StyleSheet.create({
+    background: {
+      flex: 1,
+      backgroundColor: isDarkMode
+        ? Colours.dark.background
+        : Colours.light.background,
+    },
+    scrollView: {
+      paddingHorizontal: 20,
+    },
+    loadView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
 
   const refreshArticles = useCallback(async () => {
     try {
@@ -65,7 +75,7 @@ const TodayScreen = ({navigation}: Props) => {
   }, [refreshing, isLoading, navigation]);
 
   return (
-    <View style={backgroundStyle}>
+    <View style={styles.background}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {isLoading && refreshing === false ? (
         <View style={styles.loadView}>
@@ -74,7 +84,7 @@ const TodayScreen = ({navigation}: Props) => {
       ) : (
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={{...backgroundStyle, ...styles.scrollView}}
+          style={{...styles.background, ...styles.scrollView}}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
@@ -98,16 +108,5 @@ const TodayScreen = ({navigation}: Props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    paddingHorizontal: 20,
-  },
-  loadView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default TodayScreen;

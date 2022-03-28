@@ -11,12 +11,66 @@ const ArticleCard = ({
 }: News.Article) => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const styles = StyleSheet.create({
+    card: {
+      backgroundColor: isDarkMode ? '#000' : '#fff',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 10,
+      borderRadius: 10,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.23,
+      shadowRadius: 2.62,
+      elevation: 4,
+    },
+    media: {
+      flex: 4,
+      width: '100%',
+      height: undefined,
+      aspectRatio: 1.5,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+    },
+    metadata: {
+      justifyContent: 'center',
+      flexDirection: 'row',
+      opacity: 0.75,
+      width: '100%',
+    },
+    textWrapper: {
+      marginTop: 5,
+      paddingHorizontal: 8,
+      paddingVertical: 4,
+      flex: 1,
+      marginRight: 'auto',
+    },
+    sourceName: {
+      color: isDarkMode ? '#fff' : '#999',
+      fontWeight: '600',
+      fontSize: 10,
+      marginVertical: 5,
+    },
+    timeAgo: {
+      color: isDarkMode ? '#fff' : '#999',
+      fontWeight: '600',
+      fontSize: 10,
+      marginVertical: 5,
+      marginLeft: 'auto',
+    },
+    title: {
+      color: isDarkMode ? '#fff' : '#000',
+      fontWeight: '600',
+      fontSize: 18,
+      marginVertical: 5,
+    },
+  });
+
   return (
-    <View
-      style={{
-        backgroundColor: isDarkMode ? '#000' : '#fff',
-        ...largeStyles.articleCard,
-      }}>
+    <View style={styles.card}>
       <Image
         fadeDuration={250}
         source={
@@ -26,29 +80,13 @@ const ArticleCard = ({
         }
         defaultSource={require('../assets/placeholder.png')}
         resizeMode="cover"
-        style={largeStyles.articleMedia}
+        style={styles.media}
       />
-      <View style={largeStyles.textWrapper}>
-        <Text
-          style={{
-            color: isDarkMode ? '#fff' : '#000',
-            ...largeStyles.articleTitle,
-          }}>
-          {title}
-        </Text>
-        <View style={largeStyles.metadata}>
-          <Text
-            style={{
-              color: isDarkMode ? '#fff' : '#999',
-              ...largeStyles.sourceName,
-            }}>
-            {source.name.toUpperCase()}
-          </Text>
-          <Text
-            style={{
-              color: isDarkMode ? '#fff' : '#999',
-              ...largeStyles.timeAgo,
-            }}>
+      <View style={styles.textWrapper}>
+        <Text style={styles.title}>{title}</Text>
+        <View style={styles.metadata}>
+          <Text style={styles.sourceName}>{source.name.toUpperCase()}</Text>
+          <Text style={styles.timeAgo}>
             {moment(publishedAt).fromNow().toUpperCase()}
           </Text>
         </View>
@@ -56,59 +94,5 @@ const ArticleCard = ({
     </View>
   );
 };
-
-const largeStyles = StyleSheet.create({
-  articleCard: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 10,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  articleMedia: {
-    flex: 4,
-    width: '100%',
-    height: undefined,
-    aspectRatio: 1.5,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  metadata: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    opacity: 0.75,
-    width: '100%',
-  },
-  textWrapper: {
-    marginTop: 5,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    flex: 1,
-    marginRight: 'auto',
-  },
-  sourceName: {
-    fontWeight: '600',
-    fontSize: 10,
-    marginVertical: 5,
-  },
-  timeAgo: {
-    fontWeight: '600',
-    fontSize: 10,
-    marginVertical: 5,
-    marginLeft: 'auto',
-  },
-  articleTitle: {
-    fontWeight: '600',
-    fontSize: 18,
-    marginVertical: 5,
-  },
-});
 
 export default ArticleCard;
