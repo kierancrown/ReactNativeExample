@@ -2,7 +2,7 @@ import React from 'react';
 import {useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import TodayScreen from './screens/Today';
-import {Colours} from './colours';
+import {Colours} from './utils/colours';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './screens/RootStackPrams';
@@ -32,8 +32,16 @@ const App = () => {
               fontWeight: 'bold',
             },
           }}>
-          <RootStack.Screen name="Today" component={TodayScreen} />
-          <RootStack.Screen name="WebView" component={WebViewScreen} />
+          <RootStack.Screen
+            name="Today"
+            component={TodayScreen}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="WebView"
+            component={WebViewScreen}
+            options={{title: 'View Article'}}
+          />
         </RootStack.Navigator>
       </APIContextProvider>
     </NavigationContainer>
