@@ -34,7 +34,7 @@ const WebViewScreen = ({route, navigation}: Props) => {
         <WebView
           source={{uri: route.params.url}}
           onLoadStart={() => setLoading(true)}
-          onLoadEnd={() => setLoading(false)}
+          onLoad={() => setLoading(false)}
           style={styles.webView}
         />
       )}
