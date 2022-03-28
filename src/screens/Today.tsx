@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   useColorScheme,
   View,
+  Alert,
 } from 'react-native';
 
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -17,7 +18,7 @@ import {APIContext, ACTIONS} from '../context/api';
 import ArticleCard from '../components/Article';
 import WeatherSummary from '../components/WeatherSummary';
 import {getTopHeadlines} from '../api/news';
-import {Colours} from '../colours';
+import {Colours} from '../utils/colours';
 import {getWeatherForecast} from '../api/weather';
 import Greeting from '../components/Greeting';
 
@@ -46,6 +47,11 @@ const TodayScreen = ({navigation}: Props) => {
     },
   });
 
+  const showError = (err: string) =>
+    Alert.alert('Error Refreshing News', err, [], {
+      cancelable: true,
+    });
+
   const refreshWeather = useCallback(async () => {
     try {
       if (dispatch) {
@@ -58,7 +64,8 @@ const TodayScreen = ({navigation}: Props) => {
       }
       setRefreshing(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      showError((error as string) || 'Unknown error');
     }
   }, [dispatch]);
 
@@ -74,7 +81,8 @@ const TodayScreen = ({navigation}: Props) => {
       }
       setRefreshing(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      showError((error as string) || 'Unknown error');
     }
   }, [dispatch]);
 
