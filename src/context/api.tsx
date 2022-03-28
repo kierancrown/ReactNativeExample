@@ -2,20 +2,20 @@ import React, {useReducer} from 'react';
 import {News} from '../types/news';
 import {Weather} from '../types/weather';
 
-export const APIContext = React.createContext<APIContextTypes | null>(null);
-
-type APIContextTypes = {
-  dispatch?: React.Dispatch<any>;
-  isLoading: boolean;
-  weatherData: Weather.RootObject | undefined;
-  newsData: News.HeadlinesResponse | undefined;
-};
-
 const initialData: APIContextTypes = {
   isLoading: true,
   weatherData: undefined,
   newsData: undefined,
 };
+
+export const APIContext = React.createContext<APIContextTypes>(initialData);
+
+interface APIContextTypes {
+  dispatch?: React.Dispatch<any>;
+  isLoading: boolean;
+  weatherData: Weather.RootObject | undefined;
+  newsData: News.Article[] | undefined;
+}
 
 export enum ACTIONS {
   SET_LOADING,
@@ -23,9 +23,9 @@ export enum ACTIONS {
   SET_NEWS_DATA,
 }
 
-type Props = {
+interface Props {
   children?: JSX.Element | JSX.Element[];
-};
+}
 
 export type DispatchAction = {
   type: ACTIONS;
