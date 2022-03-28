@@ -13,7 +13,7 @@ const ArticleCard = ({
 
   const styles = StyleSheet.create({
     card: {
-      backgroundColor: isDarkMode ? '#000' : '#fff',
+      backgroundColor: isDarkMode ? '#000' : '#eee',
       justifyContent: 'center',
       alignItems: 'center',
       marginVertical: 10,
