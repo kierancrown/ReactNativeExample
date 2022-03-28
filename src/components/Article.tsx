@@ -16,7 +16,7 @@ const ArticleCard = ({
       backgroundColor: isDarkMode ? '#000' : '#fff',
       justifyContent: 'center',
       alignItems: 'center',
-      margin: 10,
+      marginVertical: 10,
       borderRadius: 10,
       shadowColor: '#000',
       shadowOffset: {

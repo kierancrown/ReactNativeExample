@@ -15,8 +15,10 @@ import {RootStackParamList} from './RootStackPrams';
 
 import {APIContext, ACTIONS} from '../context/api';
 import ArticleCard from '../components/Article';
+import WeatherSummary from '../components/WeatherSummary';
 import {getTopHeadlines} from '../api/news';
 import {Colours} from '../colours';
+import {getWeatherForecast} from '../api/weather';
 
 // Used to generate type interface for navigation props
 type Props = NativeStackScreenProps<RootStackParamList, 'Today'>;
@@ -43,6 +45,22 @@ const TodayScreen = ({navigation}: Props) => {
     },
   });
 
+  const refreshWeather = useCallback(async () => {
+    try {
+      if (dispatch) {
+        dispatch({type: ACTIONS.SET_LOADING, value: true});
+        dispatch({
+          type: ACTIONS.SET_WEATHER_DATA,
+          value: (await getWeatherForecast(51.899387, -2.078253)) || null,
+        });
+        dispatch({type: ACTIONS.SET_LOADING, value: false});
+      }
+      setRefreshing(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [dispatch]);
+
   const refreshArticles = useCallback(async () => {
     try {
       if (dispatch) {
@@ -61,7 +79,8 @@ const TodayScreen = ({navigation}: Props) => {
 
   useEffect(() => {
     refreshArticles();
-  }, [refreshArticles, setRefreshing]);
+    refreshWeather();
+  }, [refreshArticles, setRefreshing, refreshWeather]);
 
   useEffect(() => {
     const updateNavbarTitle = (title: string) => {
@@ -91,6 +110,7 @@ const TodayScreen = ({navigation}: Props) => {
               onRefresh={refreshArticles}
             />
           }>
+          <WeatherSummary />
           {newsData?.map(article => (
             <TouchableOpacity
               onPress={() =>

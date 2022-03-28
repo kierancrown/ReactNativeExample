@@ -3,8 +3,11 @@ import axios from 'axios';
 
 const getWeatherForecast = async (lat: number, long: number) => {
   try {
+    console.log(
+      `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${lat},${long}?units=uk2`,
+    );
     const res = await axios.get(
-      `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${lat},${long}`,
+      `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${lat},${long}?units=uk2`,
     );
     if (res.status === 200) {
       return res.data;
