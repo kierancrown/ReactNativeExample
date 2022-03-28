@@ -1,9 +1,25 @@
 import React from 'react';
-import {StyleSheet, useColorScheme} from 'react-native';
+import {StyleSheet, useColorScheme, View} from 'react-native';
 import {Text} from 'react-native';
+import moment from 'moment';
 
 const Greeting = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  const styles = StyleSheet.create({
+    wrapper: {
+      marginTop: 20,
+    },
+    text: {
+      fontSize: 28,
+      fontWeight: '700',
+      color: isDarkMode ? '#fff' : '#000',
+    },
+    date: {
+      fontSize: 14,
+      color: '#a9a9a9',
+    },
+  });
 
   const timeAppropriateGreeting = (datetime = new Date()): string => {
     var today = datetime;
@@ -18,16 +34,17 @@ const Greeting = () => {
     }
   };
 
-  const styles = StyleSheet.create({
-    text: {
-      marginTop: 20,
-      fontSize: 36,
-      fontWeight: 'bold',
-      color: isDarkMode ? '#fff' : '#000',
-    },
-  });
+  const getReadableDate = (datetime = new Date()): string => {
+    return moment(datetime).format('ddd, MMMM Do');
+  };
 
-  return <Text style={styles.text}>{timeAppropriateGreeting()},</Text>;
+  return (
+    <View style={styles.wrapper}>
+      <Text style={styles.date}>{getReadableDate()}</Text>
+      <Text style={styles.text}>{timeAppropriateGreeting()},</Text>
+      <Text style={styles.text}>Kieran</Text>
+    </View>
+  );
 };
 
 export default Greeting;
