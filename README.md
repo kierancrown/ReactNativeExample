@@ -30,7 +30,7 @@ I decided to write this app using Typescript. I use Typescript everywhere I can,
 
 ps. I love strongly typed languages ❤️
 
-### Expo or React Native CLI
+### Expo or React Native CLI?
 
 I've always preferred working in React Native CLI rather than expo. Even though expo exposes all kinds of useful development tools and prebuilt components I've always found it more gratifying using the CLI.
 
@@ -72,7 +72,7 @@ Due to time constraints there are a few things and of polish that I could not ge
 
   I only had time to put in a few snapshot tests (very last minute admittedly)
 
-  I would have liked to have written some intergration and components test
+  I would have liked to have written some intergration and component tests
 
 ## Testing ✅
 
@@ -80,7 +80,7 @@ I decided to use Jest for writing unit tests. I didn't get as much time as I'd h
 
 I did test this app using emulators (Both Android and iOS) and also tested on Pyhsical devices (iPhone 13 Pro Max, Google Pixel 6 Pro). Landscape doesn't work very well however due to lack of optimisation.
 
-### Know issues/bugs 🚩
+## Known issues/bugs 🚩
 
 - Activity indicator off center on article view screen
 - Weather icons currently not implemented
