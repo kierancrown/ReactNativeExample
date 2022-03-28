@@ -1,9 +1,12 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, useColorScheme} from 'react-native';
-import {APIContext} from '../context/api';
+import {Weather} from '../types/weather';
 
-const WeatherSummary = () => {
-  const {weatherData, isLoading} = useContext(APIContext);
+interface WeatherProps {
+  weather: Weather.Currently | undefined;
+}
+
+const WeatherSummary = ({weather}: WeatherProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const styles = StyleSheet.create({
@@ -27,7 +30,7 @@ const WeatherSummary = () => {
     },
   });
 
-  return isLoading ? null : (
+  return (
     <View style={styles.container}>
       {/* Placeholder icon */}
       <View
@@ -41,10 +44,16 @@ const WeatherSummary = () => {
         }}
       />
       <View style={styles.textContainer}>
-        <Text style={styles.temp}>
-          {Math.round(weatherData?.currently.temperature || 0)}°
-        </Text>
-        <Text style={styles.condition}>{weatherData?.currently.summary}</Text>
+        {weather === undefined ? (
+          <Text>Unable to fetch weather</Text>
+        ) : (
+          <>
+            <Text style={styles.temp}>
+              {Math.round(weather.temperature || 0)}°
+            </Text>
+            <Text style={styles.condition}>{weather.summary}</Text>
+          </>
+        )}
       </View>
     </View>
   );

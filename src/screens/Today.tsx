@@ -26,7 +26,7 @@ import Greeting from '../components/Greeting';
 type Props = NativeStackScreenProps<RootStackParamList, 'Today'>;
 
 const TodayScreen = ({navigation}: Props) => {
-  const {dispatch, isLoading, newsData} = useContext(APIContext);
+  const {dispatch, isLoading, newsData, weatherData} = useContext(APIContext);
   const isDarkMode = useColorScheme() === 'dark';
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -120,7 +120,7 @@ const TodayScreen = ({navigation}: Props) => {
             />
           }>
           <Greeting />
-          <WeatherSummary />
+          <WeatherSummary weather={weatherData?.currently} />
           {newsData?.map(article => (
             <TouchableOpacity
               onPress={() =>

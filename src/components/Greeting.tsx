@@ -3,7 +3,7 @@ import {StyleSheet, useColorScheme, View} from 'react-native';
 import {Text} from 'react-native';
 import moment from 'moment';
 
-const Greeting = () => {
+const Greeting = ({datetime = new Date()}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const styles = StyleSheet.create({
@@ -21,7 +21,7 @@ const Greeting = () => {
     },
   });
 
-  const timeAppropriateGreeting = (datetime = new Date()): string => {
+  const timeAppropriateGreeting = (): string => {
     var today = datetime;
     var curHr = today.getHours();
 
@@ -34,7 +34,7 @@ const Greeting = () => {
     }
   };
 
-  const getReadableDate = (datetime = new Date()): string => {
+  const getReadableDate = (): string => {
     return moment(datetime).format('ddd, MMMM Do');
   };
 

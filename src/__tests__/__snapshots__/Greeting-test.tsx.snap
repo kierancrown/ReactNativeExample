@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginTop": 20,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#a9a9a9",
+        "fontSize": 14,
+      }
+    }
+  >
+    Wed, January 1st
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 28,
+        "fontWeight": "700",
+      }
+    }
+  >
+    Good morning
+    ,
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 28,
+        "fontWeight": "700",
+      }
+    }
+  >
+    Kieran
+  </Text>
+</View>
+`;

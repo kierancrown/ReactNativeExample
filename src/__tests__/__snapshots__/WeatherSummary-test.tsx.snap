@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "marginTop": 21,
+      "marginVertical": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "aspectRatio": 1,
+        "backgroundColor": "black",
+        "borderRadius": 30,
+        "height": 60,
+        "width": undefined,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "paddingLeft": 8,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      12
+      °
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#000",
+          "fontSize": 16,
+          "fontWeight": "500",
+        }
+      }
+    >
+      Drizzle
+    </Text>
+  </View>
+</View>
+`;

@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#eee",
+      "borderRadius": 10,
+      "elevation": 4,
+      "justifyContent": "center",
+      "marginVertical": 10,
+      "shadowColor": "#000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.23,
+      "shadowRadius": 2.62,
+    }
+  }
+>
+  <Image
+    defaultSource={
+      Object {
+        "testUri": "../../../src/assets/placeholder.png",
+      }
+    }
+    fadeDuration={250}
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://www.example.com/image.jpg",
+      }
+    }
+    style={
+      Object {
+        "aspectRatio": 1.5,
+        "borderTopLeftRadius": 10,
+        "borderTopRightRadius": 10,
+        "flex": 4,
+        "height": undefined,
+        "width": "100%",
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "marginRight": "auto",
+        "marginTop": 5,
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#000",
+          "fontSize": 18,
+          "fontWeight": "600",
+          "marginVertical": 5,
+        }
+      }
+    >
+      Example title
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "opacity": 0.75,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#999",
+            "fontSize": 10,
+            "fontWeight": "600",
+            "marginVertical": 5,
+          }
+        }
+      >
+        EXAMPLE
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#999",
+            "fontSize": 10,
+            "fontWeight": "600",
+            "marginLeft": "auto",
+            "marginVertical": 5,
+          }
+        }
+      >
+        A FEW SECONDS AGO
+      </Text>
+    </View>
+  </View>
+</View>
+`;
