@@ -19,6 +19,7 @@ import WeatherSummary from '../components/WeatherSummary';
 import {getTopHeadlines} from '../api/news';
 import {Colours} from '../colours';
 import {getWeatherForecast} from '../api/weather';
+import Greeting from '../components/Greeting';
 
 // Used to generate type interface for navigation props
 type Props = NativeStackScreenProps<RootStackParamList, 'Today'>;
@@ -110,6 +111,7 @@ const TodayScreen = ({navigation}: Props) => {
               onRefresh={refreshArticles}
             />
           }>
+          <Greeting />
           <WeatherSummary />
           {newsData?.map(article => (
             <TouchableOpacity

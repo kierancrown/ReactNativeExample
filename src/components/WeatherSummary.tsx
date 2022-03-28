@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, useColorScheme} from 'react-native';
 import {APIContext} from '../context/api';
 
 const WeatherSummary = () => {
   const {weatherData, isLoading} = useContext(APIContext);
+  const isDarkMode = useColorScheme() === 'dark';
 
   const styles = StyleSheet.create({
     container: {
@@ -17,10 +18,12 @@ const WeatherSummary = () => {
     temp: {
       fontSize: 32,
       fontWeight: 'bold',
+      color: isDarkMode ? '#fff' : '#000',
     },
     condition: {
       fontSize: 16,
       fontWeight: '500',
+      color: isDarkMode ? '#fff' : '#000',
     },
   });
 
@@ -33,8 +36,8 @@ const WeatherSummary = () => {
           width: undefined,
           height: 60,
           aspectRatio: 1,
-          borderRadius: 20,
-          backgroundColor: 'black',
+          borderRadius: 30,
+          backgroundColor: isDarkMode ? 'white' : 'black',
         }}
       />
       <View style={styles.textContainer}>
