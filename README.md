@@ -86,6 +86,8 @@ I did test this app using emulators (Both Android and iOS) and also tested on Py
 - Weather icons currently not implemented
 - No skeleton or indication of empty state
 - No handling of offline/caching
+- WebVew about url `Can't open url: about:srcdoc`
+- Content under statusbar
 
 ## Thanks To 👍️
 
