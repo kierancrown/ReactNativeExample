@@ -12,15 +12,14 @@ import {
 } from 'react-native';
 
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from './RootStackPrams';
-
-import {APIContext, ACTIONS} from '../context/api';
-import ArticleCard from '../components/Article';
 import WeatherSummary from '../components/WeatherSummary';
+import {RootStackParamList} from './RootStackPrams';
+import {APIContext, ACTIONS} from '../context/api';
+import {getWeatherForecast} from '../api/weather';
+import ArticleCard from '../components/Article';
+import Greeting from '../components/Greeting';
 import {getTopHeadlines} from '../api/news';
 import {Colours} from '../utils/colours';
-import {getWeatherForecast} from '../api/weather';
-import Greeting from '../components/Greeting';
 
 // Used to generate type interface for navigation props
 type Props = NativeStackScreenProps<RootStackParamList, 'Today'>;
