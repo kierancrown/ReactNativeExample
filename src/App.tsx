@@ -9,6 +9,7 @@ import {RootStackParamList} from './screens/RootStackPrams';
 import WebViewScreen from './screens/WebView';
 
 import APIContextProvider from './context/api';
+import SimpleViewScreen from './screens/SimpleView';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -40,6 +41,11 @@ const App = () => {
           <RootStack.Screen
             name="WebView"
             component={WebViewScreen}
+            options={{title: 'View Article'}}
+          />
+          <RootStack.Screen
+            name="SimpleView"
+            component={SimpleViewScreen}
             options={{title: 'View Article'}}
           />
         </RootStack.Navigator>

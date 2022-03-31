@@ -123,8 +123,8 @@ const TodayScreen = ({navigation}: Props) => {
           {newsData?.map(article => (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate('WebView', {
-                  url: article.url,
+                navigation.navigate('SimpleView', {
+                  content: article.content,
                   title: article.title,
                 })
               }
