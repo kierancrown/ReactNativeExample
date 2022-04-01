@@ -1,13 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet, useColorScheme} from 'react-native';
-import {Weather} from '../types/weather';
+import useWeather from '../hooks/useWeather';
 
-interface WeatherProps {
-  weather: Weather.Currently | undefined;
-}
-
-const WeatherSummary = ({weather}: WeatherProps) => {
+const WeatherSummary = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const {status, data, error, isFetching} = useWeather(51.899387, -2.078253);
 
   const styles = StyleSheet.create({
     container: {
@@ -30,7 +27,11 @@ const WeatherSummary = ({weather}: WeatherProps) => {
     },
   });
 
-  return (
+  return status === 'loading' ? (
+    <View>
+      <Text>Loading weather...</Text>
+    </View>
+  ) : (
     <View style={styles.container}>
       {/* Placeholder icon */}
       <View
@@ -44,14 +45,15 @@ const WeatherSummary = ({weather}: WeatherProps) => {
         }}
       />
       <View style={styles.textContainer}>
-        {weather === undefined ? (
-          <Text>Unable to fetch weather</Text>
+        {isFetching && <Text>Fetching data in background</Text>}
+        {data === undefined ? (
+          <Text>Unable to fetch weather {error?.message}</Text>
         ) : (
           <>
             <Text style={styles.temp}>
-              {Math.round(weather.temperature || 0)}°
+              {Math.round(data.currently.temperature || 0)}°
             </Text>
-            <Text style={styles.condition}>{weather.summary}</Text>
+            <Text style={styles.condition}>{data.currently.summary}</Text>
           </>
         )}
       </View>

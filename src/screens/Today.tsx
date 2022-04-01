@@ -15,7 +15,6 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import WeatherSummary from '../components/WeatherSummary';
 import {RootStackParamList} from './RootStackPrams';
 import {APIContext, ACTIONS} from '../context/api';
-import {getWeatherForecast} from '../api/weather';
 import ArticleCard from '../components/Article';
 import Greeting from '../components/Greeting';
 import {getTopHeadlines} from '../api/news';
@@ -25,7 +24,7 @@ import {Colours} from '../utils/colours';
 type Props = NativeStackScreenProps<RootStackParamList, 'Today'>;
 
 const TodayScreen = ({navigation}: Props) => {
-  const {dispatch, isLoading, newsData, weatherData} = useContext(APIContext);
+  const {dispatch, isLoading, newsData} = useContext(APIContext);
   const isDarkMode = useColorScheme() === 'dark';
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -51,23 +50,6 @@ const TodayScreen = ({navigation}: Props) => {
       cancelable: true,
     });
 
-  const refreshWeather = useCallback(async () => {
-    try {
-      if (dispatch) {
-        dispatch({type: ACTIONS.SET_LOADING, value: true});
-        dispatch({
-          type: ACTIONS.SET_WEATHER_DATA,
-          value: (await getWeatherForecast(51.899387, -2.078253)) || null,
-        });
-        dispatch({type: ACTIONS.SET_LOADING, value: false});
-      }
-      setRefreshing(false);
-    } catch (error) {
-      console.log(error);
-      showError((error as string) || 'Unknown error');
-    }
-  }, [dispatch]);
-
   const refreshArticles = useCallback(async () => {
     try {
       if (dispatch) {
@@ -87,8 +69,7 @@ const TodayScreen = ({navigation}: Props) => {
 
   useEffect(() => {
     refreshArticles();
-    refreshWeather();
-  }, [refreshArticles, setRefreshing, refreshWeather]);
+  }, [refreshArticles, setRefreshing]);
 
   useEffect(() => {
     const updateNavbarTitle = (title: string) => {
@@ -119,7 +100,7 @@ const TodayScreen = ({navigation}: Props) => {
             />
           }>
           <Greeting />
-          <WeatherSummary weather={weatherData?.currently} />
+          <WeatherSummary />
           {newsData?.map(article => (
             <TouchableOpacity
               onPress={() =>
