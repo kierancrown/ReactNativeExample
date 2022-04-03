@@ -9,7 +9,7 @@ import {RootStackParamList} from './screens/RootStackPrams';
 import WebViewScreen from './screens/WebView';
 
 import APIContextProvider from './context/api';
-import SimpleViewScreen from './screens/SimpleView';
+import MarkdownViewScreen from './screens/MarkdownView';
 import {QueryClient, QueryClientProvider} from 'react-query';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -47,8 +47,8 @@ const App = () => {
               options={{title: 'View Article'}}
             />
             <RootStack.Screen
-              name="SimpleView"
-              component={SimpleViewScreen}
+              name="MarkdownView"
+              component={MarkdownViewScreen}
               options={{title: 'View Article'}}
             />
           </RootStack.Navigator>

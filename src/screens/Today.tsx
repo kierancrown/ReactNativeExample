@@ -88,8 +88,8 @@ const TodayScreen = ({navigation}: Props) => {
             data.articles.map(article => (
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('SimpleView', {
-                    content: article.content,
+                  navigation.navigate('MarkdownView', {
+                    url: article.url,
                     title: article.title,
                   })
                 }
