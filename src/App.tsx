@@ -10,47 +10,51 @@ import WebViewScreen from './screens/WebView';
 
 import APIContextProvider from './context/api';
 import SimpleViewScreen from './screens/SimpleView';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
+const queryClient = new QueryClient();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <NavigationContainer>
-      <APIContextProvider>
-        <RootStack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: isDarkMode
-                ? Colours.dark.background
-                : Colours.light.background,
-            },
-            headerTintColor: isDarkMode
-              ? Colours.dark.text
-              : Colours.light.text,
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}>
-          <RootStack.Screen
-            name="Today"
-            component={TodayScreen}
-            options={{headerShown: false}}
-          />
-          <RootStack.Screen
-            name="WebView"
-            component={WebViewScreen}
-            options={{title: 'View Article'}}
-          />
-          <RootStack.Screen
-            name="SimpleView"
-            component={SimpleViewScreen}
-            options={{title: 'View Article'}}
-          />
-        </RootStack.Navigator>
-      </APIContextProvider>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <APIContextProvider>
+          <RootStack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: isDarkMode
+                  ? Colours.dark.background
+                  : Colours.light.background,
+              },
+              headerTintColor: isDarkMode
+                ? Colours.dark.text
+                : Colours.light.text,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}>
+            <RootStack.Screen
+              name="Today"
+              component={TodayScreen}
+              options={{headerShown: false}}
+            />
+            <RootStack.Screen
+              name="WebView"
+              component={WebViewScreen}
+              options={{title: 'View Article'}}
+            />
+            <RootStack.Screen
+              name="SimpleView"
+              component={SimpleViewScreen}
+              options={{title: 'View Article'}}
+            />
+          </RootStack.Navigator>
+        </APIContextProvider>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 };
 
